@@ -36,4 +36,11 @@ public class ActorService {
     public void create(Actor actor){
         repository.save(actor);
     }
+
+    public void update(String id, Actor actor){
+        Actor updatedActor = findById(id);
+        updatedActor.setName(actor.getName());
+        updatedActor.setFirstname(actor.getFirstname());
+        repository.save(updatedActor);
+    }
 }
