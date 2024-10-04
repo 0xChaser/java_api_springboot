@@ -5,50 +5,68 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="Acteur")
+@Table(name = "actor")
 public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
- 
-    @Column(name="name", nullable=false)
+    
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstname;
 
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 
-    public Actor(String name, String firstname){
-        this.name = name;
+
+    public Actor(String firstname, String name) {
         this.firstname = firstname;
+        this.name = name;
     }
 
-    public Actor() {}
-
-    public String getName(){
-        return name;
+    public Actor() {
     }
 
-    public String getFirstname(){
-        return firstname;
-    }
 
-    public String getId(){
+    public String getId() {
         return id;
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setFirstname(String firstname){
-        this.firstname = firstname;
-    }
-
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+    
+    public Movie getMovie() {
+        return this.movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
 }

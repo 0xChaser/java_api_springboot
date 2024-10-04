@@ -23,7 +23,7 @@ def adding_actors_to_api(actors: List[Dict]) -> List[str]:
     }
     for actor in actors:
         try:
-            response = requests.post(f"{API_BASE_URL}/actors", json=actor, headers=headers)
+            response = requests.post(f"{API_BASE_URL}/actors/", json=actor, headers=headers)
             response.raise_for_status()
             print(f"actor ajoutée avec succès")
         except requests.RequestException as error:
